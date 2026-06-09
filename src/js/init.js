@@ -9,16 +9,18 @@ const buildComponent = async (componentID, componentLocation) => {
     element.innerHTML = component
 }
 
+const loadScript = async (src) => {
+    await import(src)
+}
 
 const initComponent = async () => {
     await buildComponent("#header-component", `${COMPONENT_FILE_ROOT}/header.html`)
-    console.log("hello form 1")
     await buildComponent("#hero-component", `${COMPONENT_FILE_ROOT}/hero.html`)
-
-
-
+    await buildComponent("#category-component", `${COMPONENT_FILE_ROOT}/category.html`)
+    await buildComponent("#products-component", `${COMPONENT_FILE_ROOT}/products.html`)
+    await loadScript("/src/js/products.js")
 }
 
 
-
+// document.addEventListener("DOMContentLoaded", initComponent);
 initComponent()
